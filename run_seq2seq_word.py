@@ -94,6 +94,10 @@ if __name__ == '__main__':
     encoder = Encoder(embedding, config)
     decoder = Decoder(embedding, config)
 
+    if use_cuda:
+        encoder.cuda()
+        decoder.cuda()
+
     enc_optim = optim.Adam(encoder.parameters(), lr=config.learning_rate)
     dec_optim = optim.Adam(decoder.parameters(), lr=config.learning_rate)
     criterion = nn.CrossEntropyLoss()
